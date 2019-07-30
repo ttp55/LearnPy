@@ -22,8 +22,8 @@ def signin_form():
 
 @app.route('/signin', methods=["POST"])
 def signin():
+    db.con()
     while True:
-        db.con()
         for i in range(len(db.con())):
             if request.form['username'] == db.con()[i][0] and request.form['password'] == db.con()[i][1]:
                 return render_template('signin-ok.html', username=db.con()[i][0])
