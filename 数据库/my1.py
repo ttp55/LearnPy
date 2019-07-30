@@ -30,7 +30,8 @@ class MySqlConn(object):
         try:
             self.cursor.execute(sql)
             row = self.cursor.fetchall()
-            print(row)
+            # print(row)
+            return row
         except Exception as e:
             print(e)
 
@@ -79,15 +80,15 @@ def readsql():
             mysqlconn.qumyslq(sql_item)
 
 
-mysqlconn = MySqlConn('my', 'root', 'root')
-mysqlconn.conmysql()
+#mysqlconn = MySqlConn('my', 'root', 'root')
+#mysqlconn.conmysql()
 #mysqlconn.selmysql("SELECT * FROM user1")
-readsql()
+# readsql()
 #mysqlconn.insertmysql("insert into user1 value (3, 'wanghong')")
 #mysqlconn.selmysql("SELECT * FROM user1")
 #mysqlconn.del_updatesql("DELETE FROM user1 WHERE id = 3")
 #mysqlconn.selmysql("SELECT * FROM user1")
 #mysqlconn.selmysql('SHOW TABLES')
-mysqlconn.closemysql()
+#mysqlconn.closemysql()
 
 
