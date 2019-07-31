@@ -5,6 +5,7 @@
 from flask import Flask
 from flask import request, render_template
 from WEB import db
+import re
 
 
 app = Flask(__name__)
@@ -40,12 +41,22 @@ def signup():
     db.con()
     uu = request.form['username']
     pp = request.form['password']
+    pp1 = request.form['password1']
+    if pp != pp1:
+        return render_template('signup.html', message='两次输入密码的不一致！')
+    elif re.match(r'^[0-9a-zA-Z]+', pp) or re.match(r'^[0-9a-zA-Z]+', pp1):
+        return render_template('signup.html', message='密码必须为数字和字母！')
+
     sql = ('insert into users value(%s,%s);' % (uu, pp))
+
     for i in range(len(db.con())):
         if uu == db.con()[i][0]:
             return render_template('signup.html', message='用户已被注册！')
-    db.ins(sql)
-    return render_template('form.html', message='注册成功！')
+    try:
+        db.ins(sql)
+        return render_template('form.html', message='注册成功！')
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':

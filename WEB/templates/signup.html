@@ -12,20 +12,9 @@
     <legend>Please sign up:</legend>
     <p><input name="username" placeholder="Username" value="{{ username }}"></p>
     <p><input name="password" placeholder="Password" type="password" id="btn1"></p>
-    <p><input name="password" placeholder="Password Again" type="password" id="btn2"></p>
+    <p><input name="password1" placeholder="Password Again" type="password" id="btn2"></p>
     <p><button id="btn3" type="submit">Sign Up</button></p>
   </form>
-<script>
-    window.onload = function () {
-        var Btn1 = document.getElementById('btn1');
-        var Btn2 = document.getElementById('btn2');
-        var Btn3 = document.getElementById('btn3');
-        Btn3.onclick = function () {
-            if (Btn1.value != Btn2.value){
-                alert('两次输入的不一致！')
-            }
-        }
-    }
-</script>
+
 </body>
 </html>
