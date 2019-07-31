@@ -5,8 +5,6 @@
 from flask import Flask
 from flask import request, render_template
 from WEB import db
-from tkinter import messagebox
-import threading
 
 
 app = Flask(__name__)
@@ -45,11 +43,9 @@ def signup():
     sql = ('insert into users value(%s,%s);' % (uu, pp))
     for i in range(len(db.con())):
         if uu == db.con()[i][0]:
-            messagebox.showinfo('用户已被注册')
-            return render_template('signup.html')
+            return render_template('signup.html', message='用户已被注册！')
     db.ins(sql)
-    messagebox.showinfo('注册成功！')
-    return render_template('form.html')
+    return render_template('form.html', message='注册成功！')
 
 
 if __name__ == '__main__':
