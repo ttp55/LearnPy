@@ -8,12 +8,12 @@
   {% if message %}
   <p style="color:red">{{ message }}</p>
   {% endif %}
-  <form action="/signup" method="post">
+  <form action="/signup1" method="post">
     <legend>Please sign up:</legend>
     <p><input name="username" placeholder="Username" value="{{ username }}"></p>
     <p><input name="password" placeholder="Password" type="password" id="btn1"></p>
     <p><input name="password" placeholder="Password Again" type="password" id="btn2"></p>
-    <p><button id="btn3">Sign Up</button></p>
+    <p><button id="btn3" type="submit">Sign Up</button></p>
   </form>
 <script>
     window.onload = function () {
@@ -22,7 +22,7 @@
         var Btn3 = document.getElementById('btn3');
         Btn3.onclick = function () {
             if (Btn1.value != Btn2.value){
-
+                alert('两次输入的不一致！')
             }
         }
     }

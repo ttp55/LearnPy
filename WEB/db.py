@@ -10,12 +10,17 @@ sql = 'SELECT user,pass FROM users;'
 def con():
     mysqlconn = my1.MySqlConn('my', 'root', 'root')
     mysqlconn.conmysql()
-
     userpass = mysqlconn.selmysql(sql=sql)
     mysqlconn.closemysql()
 
     return userpass
 
+
+def ins(sql1):
+    mysqlconn = my1.MySqlConn('my', 'root', 'root')
+    mysqlconn.conmysql()
+    mysqlconn.insertmysql(sql1)
+    mysqlconn.closemysql()
 
 
 
