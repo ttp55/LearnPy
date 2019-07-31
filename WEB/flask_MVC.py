@@ -30,5 +30,15 @@ def signin():
         return render_template('form.html', message='Bad username or password', username=request.form['username'])
 
 
+@app.route('/signup', methods=["POST"])
+def signin():
+    db.con()
+    while True:
+        for i in range(len(db.con())):
+            if request.form['username'] == db.con()[i][0] and request.form['password'] == db.con()[i][1]:
+                return render_template('signin-ok.html', username=db.con()[i][0])
+        return render_template('form.html', message='Bad username or password', username=request.form['username'])
+
+
 if __name__ == '__main__':
     app.run()
