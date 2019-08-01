@@ -42,7 +42,7 @@ def signup():
     uu = request.form['username']
     pp = request.form['password']
     pp1 = request.form['password1']
-    sql = ('insert into users value(%s,%s);' % (uu, pp))
+    sql = ('insert into users(user, pass) values(%s, %s);' % (uu, pp))
     if pp != pp1:
         return render_template('signup.html', message='两次输入密码的不一致！')
     elif re.match(r'^[0-9a-zA-Z]+$', pp) is None or re.match(r'^[0-9a-zA-Z]+$', pp1) is None:
