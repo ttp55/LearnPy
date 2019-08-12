@@ -64,3 +64,12 @@ class PyTest(object):
 
     def get_url(self):
         return self.driver.current_url
+
+    def back_to(self, url):
+        self.driver.back(url)
+
+    def forword_to(self, url):
+        self.driver.forward(url)
+
+    def refresh_(self):
+        self.driver.refresh()

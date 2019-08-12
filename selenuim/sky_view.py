@@ -2,7 +2,7 @@
 # @author: WZG
 # encoding: utf-8
 
-from selenuim import pytest
+from selenuim import PyTest_main
 import time
 import re
 
@@ -10,7 +10,7 @@ import re
 url_url = 'http://192.168.211.70:8082/main'
 
 if __name__ == '__main__':
-    d = pytest.PyTest(browser='chrome')
+    d = PyTest_main.PyTest(browser='chrome')
     d.make_maxwindow()
     d.open(url=url_url)
     d.send_key(fangfa='xpath', dingwei='//*[@id="app"]/div/div/div[3]/div/input', text='admin')

@@ -2,7 +2,7 @@
 # @author: WZG
 # encoding: utf-8
 
-from selenuim import pytest
+from selenuim import PyTest_main
 import time
 import re
 import urllib3
@@ -64,7 +64,7 @@ t2 = '"]/td[11]'
 tobt = t1 + t[0] + t2
 tobt1 = '//*[@id="tobt"]'
 if __name__ == '__main__':
-    d = pytest.PyTest(browser='chrome')
+    d = PyTest_main.PyTest(browser='chrome')
     d.make_maxwindow()
     d.open(url=url_url)
     d.send_key(fangfa='id', dingwei='logon_username', text='zlxydev')
