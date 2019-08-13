@@ -11,13 +11,17 @@ liukong_name = 'WTest' + str(random.randrange(0, 100))
 fly_fangx = 'ELKAL;P127:SUBUL'
 time_now = datetime.datetime.now()
 hour_now = time_now.hour
+be = random.randrange(0, 8)
+air = random.randrange(0, 4)
 
 
 def fabu_airport(hour_n):
-    d.element(fangfa='xpath', dingwei='/html/body/div/section/div/div[1]/div/div/button').click()
-    # d.driver.switch_to.frame(0)
+    # d.element(fangfa='xpath', dingwei='/html/body/div/section/div/div[1]/div/div/button').click()
+    airp = d.driver.find_elements_by_css_selector("[class='ant-btn c-btn c-btn-blue publish-btn']")
+    airp[air].click()
     d.element(fangfa='id', dingwei='planName').send_keys(liukong_name)
-    d.element(fangfa='class', dingwei='ant-radio-input').click()
+    bec = d.driver.find_elements_by_class_name('ant-radio-input')
+    bec[be].click()
     if (hour_n + 1) / 10 < 1:
         hour_now1 = '0' + str(hour_n) + '00'
     else:
@@ -47,7 +51,7 @@ def fabu_airport(hour_n):
     time.sleep(2)
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[1])
-    time.sleep(2)
+    time.sleep(3)
     d.element(fangfa='xpath', dingwei='//*[@id="total-modal"]/div[3]/button[3]').click()
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[1])
