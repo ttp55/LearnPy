@@ -8,7 +8,8 @@ import time
 
 url_url = 'http://192.168.210.108:8080/page/#/arrivalHome'
 liukong_name = 'WTest' + str(random.randrange(0, 100))
-fly_fangx = 'ELKAL;P127:SUBUL'
+fly_fangx = 'IDEPO;ELKAL;LAGEX;P293;P480;LINSO;SAGAG;KATBO;MEPAN;OMBON;SUBUL;AGULU;DCH;RG;SANLI;P11;P239;OKTUV;' \
+            'LOTMO;P124;P233;P127;P438;P40;HUY;TRN'
 time_now = datetime.datetime.now()
 hour_now = time_now.hour
 be = random.randrange(0, 8)
@@ -42,7 +43,8 @@ def fabu_airport(hour_n):
         hour_now1 = (hour_n - 1) * 100
     d.element(fangfa='id', dingwei='accumulateEndHour').send_keys(hour_now1)
     d.element(fangfa='xpath', dingwei='//*[@id="direction"]').send_keys(fly_fangx)
-    d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div/div[2]/div/form/div[5]/div/div/span/div/div[1]/button').click()
+    d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div/div[2]/div/form/div[5]/div/div/span/div/div[1]/button'
+              ).click()
     d.waiting(5)
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[0])
