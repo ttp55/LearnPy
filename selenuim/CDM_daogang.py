@@ -31,7 +31,7 @@ def fabu_airport(hour_n):
     d.element(fangfa='xpath', dingwei='//*[@id="extendHour"]').send_keys(10)
     inp = d.driver.find_elements_by_class_name('pass-ability-input-box')
     for i in inp:
-        i.send_keys(66)
+        i.send_keys(random.randrange(1, 99))
     if (hour_n - 3) / 10 < 1:
         hour_now1 = '0' + str(hour_n - 3) + '00'
     else:
