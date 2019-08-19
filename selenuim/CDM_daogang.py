@@ -7,7 +7,7 @@ import datetime
 import time
 
 url_url = 'http://192.168.210.108:8080/page/#/arrivalHome'
-liukong_name = 'WTest' + str(random.randrange(0, 100))
+liukong_name = 'WTest' + str(random.randrange(0, 1000))
 fly_fangx = 'IDEPO;ELKAL;LAGEX;P293;P480;LINSO;SAGAG;KATBO;MEPAN;OMBON;SUBUL;AGULU;DCH;RG;SANLI;P11;P239;OKTUV;' \
             'LOTMO;P124;P233;P127;P438;P40;HUY;TRN'
 time_now = datetime.datetime.now()
@@ -17,7 +17,6 @@ air = random.randrange(0, 4)
 
 
 def fabu_airport(hour_n):
-    # d.element(fangfa='xpath', dingwei='/html/body/div/section/div/div[1]/div/div/button').click()
     airp = d.driver.find_elements_by_css_selector("[class='ant-btn c-btn c-btn-blue publish-btn']")
     airp[air].click()
     d.element(fangfa='id', dingwei='planName').send_keys(liukong_name)
