@@ -14,7 +14,6 @@ l8= [5, 9, 13, -3]
 def sum_pairs(ints, s):
     l = []
     v = []
-    m = []
     for i in range(len(ints)):
         for j in range(i + 1, len(ints)):
             if ints[i] + ints[j] == s:
