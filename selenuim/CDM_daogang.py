@@ -16,12 +16,13 @@ be = random.randrange(0, 8)
 air = random.randrange(0, 4)
 exemption_fly = 'CSC8529;CSH9451;N899CH'
 air_port = ['ZUUU', 'ZUGY', 'ZUCK', 'ZPPP']
+limit_d = ['天气', '军事活动', '航班时刻', '流量', '机场', '重大保障活动', '空管', '其他']
 
 
 def fab_airport(hour_n):
     air_p = d.driver.find_elements_by_css_selector("[class='ant-btn c-btn c-btn-blue publish-btn']")
     air_p[air].click()
-    d.element(fangfa='id', dingwei='planName').send_keys(air_port[air] + '-' + liukong_name)
+    d.element(fangfa='id', dingwei='planName').send_keys(air_port[air] + '-' + liukong_name + '限制' + '-' + limit_d[be])
     bec = d.driver.find_elements_by_class_name('ant-radio-input')
     bec[be].click()
     if (hour_n + 1) / 10 < 1:
