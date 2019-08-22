@@ -14,12 +14,14 @@ time_now = datetime.datetime.now()
 hour_now = time_now.hour
 be = random.randrange(0, 8)
 air = random.randrange(0, 4)
+exemption_fly = 'CSC8529;CSH9451;N899CH'
+air_port = ['ZUUU', 'ZUGY', 'ZUCK', 'ZPPP']
 
 
-def fabu_airport(hour_n):
-    airp = d.driver.find_elements_by_css_selector("[class='ant-btn c-btn c-btn-blue publish-btn']")
-    airp[air].click()
-    d.element(fangfa='id', dingwei='planName').send_keys(liukong_name)
+def fab_airport(hour_n):
+    air_p = d.driver.find_elements_by_css_selector("[class='ant-btn c-btn c-btn-blue publish-btn']")
+    air_p[air].click()
+    d.element(fangfa='id', dingwei='planName').send_keys(air_port[air] + '-' + liukong_name)
     bec = d.driver.find_elements_by_class_name('ant-radio-input')
     bec[be].click()
     if (hour_n + 1) / 10 < 1:
@@ -42,6 +44,9 @@ def fabu_airport(hour_n):
         hour_now1 = (hour_n - 1) * 100
     d.element(fangfa='id', dingwei='accumulateEndHour').send_keys(hour_now1)
     d.element(fangfa='xpath', dingwei='//*[@id="direction"]').send_keys(fly_fangx)
+    d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div/div[2]/div/form/div[4]/div[1]/div/div/div/div/div[1]'
+                                      '/div[2]/span').click()
+    d.element(fangfa='xpath', dingwei='//*[@id="gdpExemptFlight"]').send_keys(exemption_fly)
     d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div/div[2]/div/form/div[5]/div/div/span/div/div[1]/button'
               ).click()
     d.waiting(5)
@@ -52,7 +57,7 @@ def fabu_airport(hour_n):
     time.sleep(2)
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[1])
-    time.sleep(3)
+    time.sleep(5)
     d.element(fangfa='xpath', dingwei='//*[@id="total-modal"]/div[3]/button[3]').click()
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[1])
@@ -65,4 +70,4 @@ if __name__ == "__main__":
     d.make_maxwindow()
     d.open(url=url_url)
     d.waiting(5)
-    fabu_airport(hour_now)
+    fab_airport(hour_now)
