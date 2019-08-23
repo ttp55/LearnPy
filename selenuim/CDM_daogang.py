@@ -50,7 +50,6 @@ def fab_airport(hour_n):
     d.element(fangfa='xpath', dingwei='//*[@id="gdpExemptFlight"]').send_keys(exemption_fly)
     d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div/div[2]/div/form/div[5]/div/div/span/div/div[1]/button'
               ).click()
-    d.waiting(5)
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[0])
     time.sleep(1)
@@ -58,17 +57,21 @@ def fab_airport(hour_n):
     time.sleep(2)
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[1])
-    time.sleep(5)
-    d.element(fangfa='xpath', dingwei='//*[@id="total-modal"]/div[3]/button[3]').click()
+    time.sleep(100)
+    # d.driver.get_screenshot_as_file('C:\\Users\\lenovo\\Desktop\\jie\\error1.jpg')
+    new_tab = d.element(fangfa='xpath', dingwei='//*[@id="total-modal"]/div[3]/button[3]')
+    new_tab.click()
     all_handles = d.driver.window_handles
     d.driver.switch_to.window(all_handles[1])
     time.sleep(2)
     d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
+    d.driver.quit()
 
 
 if __name__ == "__main__":
     d = PyTest_main.PyTest(browser='chrome')
     d.make_maxwindow()
     d.open(url=url_url)
-    d.waiting(5)
+    d.waiting(60)
     fab_airport(hour_now)
+
