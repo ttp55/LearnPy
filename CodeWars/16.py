@@ -6,12 +6,12 @@
 def triangles(k):
     p = [1]
     n = 0
-    l = []
-    while n <= k:
+    l = [1]
+    while n < k - 1:
         p = [1] + [p[i] + p[i+1] for i in range(len(p)-1)] + [1]
         l = p + l
         n += 1
     return l[::-1]
 
 
-print(triangles(5))
+print(triangles(3))
