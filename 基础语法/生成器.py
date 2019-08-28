@@ -1,5 +1,6 @@
 import sys
 
+
 def ssq(n):
     a,b,c = 0,1,0
     while c<n:

@@ -15,4 +15,4 @@ def count_smileys(arr):
     return x
 
 
-print(count_smileys([':)', ':(', ':D', ':O', ':;']))
+print(count_smileys([')', ':(', 'D', ':O', ':;']))
