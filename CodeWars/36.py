@@ -7,12 +7,14 @@ import math
 class PaginationHelper:
 
     def __init__(self, collection, items_per_page):
+        self.i = 0
         self.list_l = []
         self.list_l1 = list(collection)
         self.list_l2 = list(collection)
-        for i in range(int(math.ceil(len(self.list_l2)/items_per_page))):
+        while self.i < math.ceil(len(self.list_l2)/items_per_page):
             self.list_l.append(list(self.list_l1[:items_per_page]))
             self.list_l1 = self.list_l1[items_per_page:]
+            self.i += 1
 
     def item_count(self):
         return len(self.list_l2)
