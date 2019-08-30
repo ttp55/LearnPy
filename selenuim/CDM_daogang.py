@@ -15,8 +15,11 @@ hour_now = time_now.hour
 be = random.randrange(0, 8)
 air = random.randrange(0, 4)
 exemption_fly = 'CSC8529;CSH9451;N899CH'
+exemption_fly1 = 'CSN3443;CSC8870;CSN3453'
+
 air_port = ['ZUUU', 'ZUGY', 'ZUCK', 'ZPPP']
 limit_d = ['天气', '军事活动', '航班时刻', '流量', '机场', '重大保障活动', '空管', '其他']
+list_l = []
 
 
 def fab_airport(hour_n):
@@ -33,7 +36,9 @@ def fab_airport(hour_n):
     d.element(fangfa='xpath', dingwei='//*[@id="extendHour"]').send_keys(10)
     inp = d.driver.find_elements_by_class_name('pass-ability-input-box')
     for i in inp:
-        i.send_keys(random.randrange(1, 99))
+        j = random.randrange(1, 99)
+        list_l.append(j)
+        i.send_keys(j)
     if (hour_n - 3) / 10 < 1:
         hour_now1 = '0' + str(hour_n - 3) + '00'
     else:
@@ -47,6 +52,7 @@ def fab_airport(hour_n):
     d.element(fangfa='xpath', dingwei='//*[@id="direction"]').send_keys(fly_fangx)
     js = "window.scrollTo(100, 450)"
     d.driver.execute_script(js)
+    d.element(fangfa='xpath', dingwei='//*[@id="exemptFlight"]').send_keys(exemption_fly1)
     d.element(fangfa='xpath', dingwei='//*[@id="gdpExemptFlight"]').send_keys(exemption_fly)
     d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div/div[2]/div/form/div[6]/div/div/span/div/div[1]/button').click()
     all_handles = d.driver.window_handles
@@ -65,6 +71,7 @@ def fab_airport(hour_n):
     time.sleep(2)
     d.element(fangfa='xpath', dingwei='/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
     # d.driver.quit()
+    print(list_l)
 
 
 if __name__ == "__main__":
