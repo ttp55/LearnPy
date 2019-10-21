@@ -40,7 +40,7 @@ m.click(1734, 794)
 time.sleep(1)
 '''
 
-time.sleep(12000)
+time.sleep(2800)
 # 点击加群
 #m.click(493, 1008)
 #time.sleep(3)
