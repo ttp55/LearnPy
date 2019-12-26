@@ -20,6 +20,7 @@ class PyTest(object):
     def element(self, fangfa, dingwei):
         if fangfa == 'id':
             element = self.driver.find_element_by_id(dingwei)
+
         elif fangfa == 'name':
             element = self.driver.find_element_by_name(dingwei)
         elif fangfa == 'class':
