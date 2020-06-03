@@ -5,7 +5,7 @@ __author__ = 'WZG'
 
 import unittest
 
-from mydict import Dict
+from 单元测试.mydict import Dict
 
 
 class TestDict(unittest.TestCase):

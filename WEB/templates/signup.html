@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
 </head>
 <body>
+<div style="text-align: center; top: 350px; position: relative">
   {% if message %}
   <p style="color:red">{{ message }}</p>
   {% endif %}
@@ -13,8 +16,9 @@
     <p><input name="username" placeholder="Username" value="{{ username }}"></p>
     <p><input name="password" placeholder="Password" type="password" id="btn1"></p>
     <p><input name="password1" placeholder="Password Again" type="password" id="btn2"></p>
-    <p><button id="btn3" type="submit">Sign Up</button></p>
+    <p><button id="btn3" type="submit">Sign Up</button>
+    <button id="btn4" formaction="/signin" type="submit" formmethod="get">Sign in</button></p>
   </form>
-
+</div>
 </body>
 </html>

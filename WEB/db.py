@@ -12,7 +12,6 @@ def con():
     mysqlconn.conmysql()
     userpass = mysqlconn.selmysql(sql=sql)
     mysqlconn.closemysql()
-
     return userpass
 
 

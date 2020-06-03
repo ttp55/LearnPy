@@ -3,7 +3,6 @@
 # --coding:utf-8--
 
 from selenuim import PyTest_main
-import time
 import re
 
 url_url = 'http://yx.h5uc.com/kanniyouduose/'
@@ -26,7 +25,6 @@ def click_yanse():
         else:
             x = l1.index(s1[1]) + 1
             d.element(fangfa='xpath', dingwei='//*[@id="box"]/span[%s]' % x).click()
-        print(l1)
 
 
 if __name__ == "__main__":
