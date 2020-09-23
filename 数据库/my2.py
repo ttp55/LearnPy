@@ -24,20 +24,16 @@ class MySqlCommand(object):
         self.password = 'root'
         self.db = db
         self.table = table
-
-#连接数据库
-    def connectmysql(self):
         try:
             self.conn = pymysql.connect(host=self.host, port=self.port, user=self.user,
                                         password=self.password, db=self.db)
+
             self.cursor = self.conn.cursor()
         except StopIteration:
             print('connect mysql error')
 
 #创建表
     def createmysql(self, sql):
-        #t = re.match(r'(^$', sql)
-        #self.cursor.execute("DROP TABLE IF EXISTS t")
         try:
             self.cursor.execute(sql)
         except StopIteration:
@@ -48,7 +44,7 @@ class MySqlCommand(object):
         try:
             self.cursor.execute(sql)
             row = self.cursor.fetchall()
-            print(row)
+            print(list(row))
         except StopIteration:
             print(sql + ' execute failed')
 
@@ -74,11 +70,6 @@ class MySqlCommand(object):
         self.cursor.close()
 
 
-mysqlcommand = MySqlCommand('my', 'user1')
-mysqlcommand.connectmysql()
-mysqlcommand.selmysql("SELECT * FROM user1")
-mysqlcommand.insertmysql("insert into user1 value (3, 'wanghong')")
-mysqlcommand.selmysql("SELECT * FROM user1")
-mysqlcommand.del_updatemysql("DELETE FROM user1 WHERE id = 3")
-mysqlcommand.closemysql()
+mysqlcommand = MySqlCommand('my', 'sweetice')
+mysqlcommand.selmysql('select Taste from sweetice')
 
