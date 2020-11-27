@@ -3,13 +3,12 @@
 # --coding:utf-8--
 import autoit
 import time
-
-
 spmspath = "D:\SSSSSSSSPMS\Debug\SPMS.exe"
+spmspath1 = "D:\SSSSSSSSPMS\SPMS改字段新数据库\SPMS.exe"
 
 autoit.run(spmspath)
-time.sleep(3)
 
+time.sleep(3)
 
 def jks_login():
     autoit.send("{TAB}")
