@@ -10,6 +10,7 @@ autoit.run(spmspath)
 
 time.sleep(3)
 
+
 def jks_login():
     autoit.send("{TAB}")
     autoit.send('jks')
@@ -26,7 +27,7 @@ def admin_login():
     autoit.send("{ENTER}")
 
 
-#jks_login()
+# jks_login()
 admin_login()
 
 

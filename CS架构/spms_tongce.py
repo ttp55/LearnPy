@@ -5,6 +5,7 @@ import autoit
 import time
 from pymouse import PyMouse
 from tkinter import messagebox
+from pykeyboard import PyKeyboard
 
 
 spmspath = "D:\SSSSSSSSPMS\Debug\SPMS.exe"
@@ -12,6 +13,7 @@ spmspath1 = "D:\SSSSSSSSPMS\SPMS改字段新数据库\SPMS.exe"
 
 autoit.run(spmspath)
 m = PyMouse()
+k = PyKeyboard()
 a = m.position()
 print(a)
 
@@ -33,7 +35,7 @@ def admin_login():
     time.sleep(1)
     autoit.send("{ENTER}")
 
-    time.sleep(10)
+    time.sleep(15)
     y3 = 158
     for i in range(4):
         m.move(41, 112)
@@ -105,9 +107,13 @@ def admin_login():
         time.sleep(5)
         y2 += 49
         
-    messagebox.showinfo("测试完成~")
+    messagebox.showinfo("提示", "测试完成~")
+    time.sleep(2)
 
 
 # jks_login()
 
+
 admin_login()
+
+k.press_key(k.enter_key)
