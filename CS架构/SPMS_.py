@@ -3,6 +3,7 @@
 # --coding:utf-8--
 import autoit
 import time
+
 spmspath = "D:\SSSSSSSSPMS\Debug\SPMS.exe"
 spmspath1 = "D:\SSSSSSSSPMS\SPMS改字段新数据库\SPMS.exe"
 
@@ -12,7 +13,7 @@ time.sleep(3)
 
 
 def jks_login():
-    autoit.send("{TAB}")
+    autoit.send("{TAB}")    
     autoit.send('jks')
     autoit.send("{DELETE 5}")
     time.sleep(1)

@@ -60,7 +60,7 @@ print(re.sub(r1, r2, '2020-05-10 20:23:05'))
 
 str1 = 'the little cat cat is in the hat hat, we like it.'
 
-print(re.sub(r'(\w+)(\s\1)+', r'\1', str1))
+print(re.sub(r'\b(\w+)(\s\1)+\b', r'\1', str1))
 
 str2 = 'cat cat' \
        'CAT Cat' \
@@ -92,6 +92,17 @@ str4 = 'tom asked me if I would go fishing with him tomorrow.'
 
 print(re.sub(r'\btom\b', 'jerry', str4)) #断言
 
+print(re.findall(r'(?<!\d)\d{6}(?!\d)', '446544 4164646 r123456w'))
 
+str5 = 'the little cat 2cat catr is in the hat ehat hat2, we like it.'
+print(re.sub(r'\w+\s+\w*((\w+)(\s\2))+\w*', r'\2', str5))
+print(re.sub(r'\b(\w+)\s\1\b', r'\1', str5))
 
+# 匹配中文
+print(re.findall(r'[\u4e00-\u9fa5]+', '2342 sdfs sdf ’大师傅‘ 士大夫'))
+print(re.findall(r'[^\x00-\xff]+', '2342 sdfs sdf ’大师傅‘ 士大夫'))
+
+# 转义
+print(re.escape('\d'))
+print(re.findall(re.escape('\d'), '\d'))
 
