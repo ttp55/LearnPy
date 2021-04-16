@@ -15,12 +15,12 @@ def learn():
     d.element(fangfa='xpath', dingwei='//*[@id="formLogin"]/button').click()
     time.sleep(30)
 
-    for i in range(1, 27):
+    for i in range(10, 37):
         d.element(fangfa='xpath', dingwei='/html/body/div[3]/div/div/div/div[1]/div[2]/ul/li['+str(i)+']/div/a/div').click()
         playtime = d.element(fangfa='xpath', dingwei='/html/body/div[3]/div/div/div/div[1]/div[2]/ul/li['+str(i)+']/div/a/div/p').text
-        print(playtime)
+        print(playtime, i)
         playtime = int(playtime[4:6])*60 + int(playtime[7:9])
-        time.sleep(playtime+10)
+        time.sleep(playtime+15)
 
 
 if __name__ == "__main__":
