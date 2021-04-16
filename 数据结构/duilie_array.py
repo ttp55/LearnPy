@@ -20,9 +20,19 @@ class Queue(object):
         return len(self.entries)
 
 
-q = Queue()
-q.enqueue(1)
-q.enqueue(2)
-print(q.size())
-print(q.dequeue())
-print(q.dequeue())
+def josefhes(P_list, m):
+    q = Queue()
+    for people in P_list:
+        q.enqueue(people)
+
+    while q.size() > 1:
+        for i in range(m-1):
+            q.enqueue(q.dequeue())
+            print(q.entries)
+        q.dequeue()
+    return q.dequeue()
+
+
+P_list = [1, 2, 3, 4]
+print(josefhes(P_list, 3))
+
