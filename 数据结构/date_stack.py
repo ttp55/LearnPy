@@ -31,8 +31,9 @@ class Stack(object):
         return len(self.stack)
 
 
-s = Stack(0)
+s = Stack(10)
 s.push(1)
 s.push(2)
 print(s.peek())
 print(s.size())
+print(s.stack)
