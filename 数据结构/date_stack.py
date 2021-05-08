@@ -31,16 +31,10 @@ class Stack(object):
         return len(self.stack)
 
 
-<<<<<<< Updated upstream
 s = Stack(10)
-=======
 s = Stack(0)
->>>>>>> Stashed changes
 s.push(1)
 s.push(2)
 print(s.peek())
 print(s.size())
-<<<<<<< Updated upstream
 print(s.stack)
-=======
->>>>>>> Stashed changes
