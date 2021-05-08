@@ -2,7 +2,6 @@
 # @Author : WZG
 # --coding:utf-8--
 import mysql.connector
-import re
 
 
 class MySqlConn(object):
@@ -13,7 +12,6 @@ class MySqlConn(object):
         self.password = password
         self.port = 3306
 
-    def conmysql(self):
         try:
             self.conn = mysql.connector.connect(user=self.user, password=self.password, database=self.db)
             self.cursor = self.conn.cursor()
@@ -62,7 +60,7 @@ class MySqlConn(object):
         self.conn.close()
         self.cursor.close()
 
-
+'''
 def readsql():
     with open('E:/sql/sql.txt', 'r') as f:
         sql_list = f.read().split(';')[:-1]  # sql文件最后一行加上;
@@ -78,9 +76,11 @@ def readsql():
             mysqlconn.insertmysql(sql_item)
         else:
             mysqlconn.qumyslq(sql_item)
-
+'''
 
 #mysqlconn = MySqlConn('my', 'root', 'root')
+#print(mysqlconn.selmysql('select * from sweetice'))
+
 #mysqlconn.conmysql()
 #mysqlconn.selmysql("SELECT * FROM user1")
 # readsql()
