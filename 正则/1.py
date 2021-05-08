@@ -19,3 +19,5 @@ print(re.match(r'/[A-Z]/+', st))
 
 
 print(re.findall(r'[A-Z]+', st))
+if re.search(r'[A-Z]+', st):
+    print('x')
