@@ -16,7 +16,6 @@ l = l[::-1]
 l = l[1:]
 q = []
 
-
 for i in range(len(l[1:])):
     tr = 1
     tl = 0
