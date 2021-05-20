@@ -15,7 +15,6 @@ while tree_right <= len(tree) + tree_lift:
 l = l[::-1]
 l = l[1:]
 q = []
-
 for i in range(len(l[1:])):
     tr = 1
     tl = 0
@@ -25,14 +24,14 @@ for i in range(len(l[1:])):
             q.append(l[i][tl])
             q.append(l[i][tr])
             q.append(l[i+1][tl1])
-            tr +=1
-            tl = tr+1
-            tl1 +=1
+            tl += 2
+            tr += 2
+            tl1 += 1
+
         except:
             break
 q = list(map(str, q))
-
 print(''.join(x+' ' for x in q))
 
 
-# 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+# 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
