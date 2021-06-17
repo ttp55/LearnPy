@@ -27,6 +27,5 @@ def admin_login():
     time.sleep(1)
     autoit.send("{ENTER}")
 
-
-#jks_login()
-admin_login()
+jks_login()
+# admin_login()
