@@ -32,6 +32,7 @@ class Stack(object):
 
 
 s = Stack(10)
+s = Stack(0)
 s.push(1)
 s.push(2)
 print(s.peek())
