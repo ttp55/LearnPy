@@ -10,28 +10,28 @@ spmspath1 = "D:\SSSSSSSSPMS\SPMS改字段新数据库\SPMS.exe"
 
 def jks_login():
     autoit.run(spmspath)
-    time.sleep(3)
+    time.sleep(5)
     autoit.send("{TAB}")
     autoit.send('jks')
     autoit.send("{DELETE 5}")
     time.sleep(1)
     autoit.send("{TAB}")
-    autoit.send('741852963Bmw/')
+    autoit.send('')
     autoit.send("{ENTER}")
 
 
 def admin_login():
     autoit.run(spmspath)
-    time.sleep(3)
+    time.sleep(5)
     autoit.send("{TAB}")
     autoit.send('admin')
+
     autoit.send("{DELETE 5}")
     time.sleep(1)
     autoit.send("{TAB}")
-    autoit.send('741852963Bmw/')
+    autoit.send('')
 
     autoit.send("{ENTER}")
 
 jks_login()
-# admin_login()
-
+admin_login()
