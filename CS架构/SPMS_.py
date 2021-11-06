@@ -32,6 +32,5 @@ def admin_login():
     autoit.send('')
 
     autoit.send("{ENTER}")
-
-jks_login()
+#jks_login()
 admin_login()
