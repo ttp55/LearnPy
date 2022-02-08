@@ -4,10 +4,16 @@
 
 import pandas as pd
 import requests
+import numpy as np
 import re
-
+from matplotlib import pyplot as plt
+import seaborn
 url = 'http://www.cntour.cn/'
 strhtml = requests.get(url)
 ht = re.findall(r'([a-zA-z]+://.*?)"', strhtml.text)
-print(pd.Series(ht).to_csv('urlStr.csv'))
+ht = pd.Series(ht)
+
+# print(pd.Series(ht).to_csv('urlStr.csv'))
+
+#seaborn.displot(ht, kde=False, rug=True)
 
