@@ -106,7 +106,38 @@ def wuzi():
                         winner = exist_white[WX:WY]
                         WY += 1
                         WX += 1
-                        print(winner)
+                        #print(winner)
+                    x = pos_exist[-1][0]
+                    y = pos_exist[-1][1]
+                    for j in range(1, 5):
+                        if [x + j * 40, y] in exist_white:
+                            print('右')
+                            break
+                        elif [x, y + j * 40] in exist_white:
+                            print('下')
+                            break
+                        elif [x, y - j * 40] in exist_white:
+                            print('上')
+                            break
+                        elif [x - j * 40, y] in exist_white:
+                            print('左')
+                            break
+                        elif [x + j * 40, y + j * 40] in exist_white:
+                            print('右下')
+                            break
+                        elif [x + j * 40, y - j * 40] in exist_white:
+                            print('右上')
+                            break
+                        elif [x - j * 40, y - j * 40] in exist_white:
+                            print('左上')
+                            break
+                        elif [x - j * 40, y + j * 40] in exist_white:
+                            print('左下')
+                            break
+
+
+
+
 
 
         clearS = pygame.image.load('cls.jpg')
