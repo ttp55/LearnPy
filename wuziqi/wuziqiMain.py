@@ -94,53 +94,45 @@ def wuzi():
                                 exist_black.append(posXY)
                                 color_Q = 0
                         posXY = []
-                    if exist_white:
-                        exist_white = sorted(exist_white)
-                    if exist_black:
-                        exist_black = sorted(exist_black)
+                    if pos_exist:
 
-                        print(exist_white)
-                    WY = 5
-                    WX = 0
-                    while WY <= len(exist_white):
-                        winner = exist_white[WX:WY]
-                        WY += 1
-                        WX += 1
-                        #print(winner)
-                    x = pos_exist[-1][0]
-                    y = pos_exist[-1][1]
-                    for j in range(1, 5):
-                        if [x + j * 40, y] in exist_white:
-                            print('右')
-                            break
-                        elif [x, y + j * 40] in exist_white:
-                            print('下')
-                            break
-                        elif [x, y - j * 40] in exist_white:
-                            print('上')
-                            break
-                        elif [x - j * 40, y] in exist_white:
-                            print('左')
-                            break
-                        elif [x + j * 40, y + j * 40] in exist_white:
-                            print('右下')
-                            break
-                        elif [x + j * 40, y - j * 40] in exist_white:
-                            print('右上')
-                            break
-                        elif [x - j * 40, y - j * 40] in exist_white:
-                            print('左上')
-                            break
-                        elif [x - j * 40, y + j * 40] in exist_white:
-                            print('左下')
-                            break
+                        x = pos_exist[-1][0]
+                        y = pos_exist[-1][1]
 
+                        count1, count2, count3, count4 = 0, 0, 0, 0
+                        colorS = exist_white
 
+                        if color_Q == 0:
+                            colorS = exist_black
 
+                        for i in range(1, 5):
+                            if [x + i * 40, y] in colorS or [x - i * 40, y] in colorS:
+                                count1 += 1
 
+                        for i in range(1, 5):
+                            if [x + i * 40, y + i * 40] in colorS or [x - i * 40, y - i * 40] in colorS:
+                                count2 += 1
 
+                        for i in range(1, 5):
+                            if [x + i * 40, y - i * 40] in colorS or [x - i * 40, y + i * 40] in colorS:
+                                count3 += 1
 
-        clearS = pygame.image.load('cls.jpg')
+                        for i in range(1, 5):
+                            if [x, y - i * 40] in colorS or [x, y + i * 40] in colorS:
+                                count4 += 1
+                        if count1 == 4 or count2 == 4 or count3 == 4 or count4 == 4:
+                            if color_Q == 1:
+                                clearS = pygame.image.load('3.jpg')
+                                screen.blit(clearS, [280, 300])
+                                pygame.display.update()
+                                break
+                            elif color_Q == 0:
+                                clearS = pygame.image.load('4.jpg')
+                                screen.blit(clearS, [280, 300])
+                                pygame.display.update()
+                                break
+
+        clearS = pygame.image.load('2.jpg')
         screen.blit(clearS, [680, 40])
         pygame.display.update()
 
