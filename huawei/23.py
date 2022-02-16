@@ -13,7 +13,7 @@ class Solution:
             lis = i.split(':')
             if lis[1] == 'start':
                 if stack:
-                    gotime[stack[0]] += int(lis[2]) - pre
+                    gotime[stack[-1]] += int(lis[2]) - pre
                 stack.append(int(lis[0]))
                 pre = int(lis[2])
             else:
