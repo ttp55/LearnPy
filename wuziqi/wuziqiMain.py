@@ -49,7 +49,6 @@ def qipan():
 qipan()
 
 
-
 def wuzi():
     posXY = [] # 点击的坐标
     pos_exist = [] # 已有棋子的坐标
@@ -58,18 +57,18 @@ def wuzi():
     exist_white = [] # 已有的白棋
     while True:
         for event in pygame.event.get():
-            if event.type == QUIT:
+            if event.type == QUIT:# 退出
                 pygame.quit()
                 sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
+            if event.type == MOUSEBUTTONDOWN:# 监听器监听鼠标点击
                 if pygame.mouse.get_pressed()[0] == True:
                     pos = pygame.mouse.get_pos()
-                    if 730 > pos[0] > 680 and 65 > pos[1] > 40:  # 清空棋子
+                    if 760 > pos[0] > 680 and 80 > pos[1] > 40:  # 清空棋子
                         qipan()
                         pos_exist = []
                         exist_white = []
                         exist_black = []
-                    if pos[0] % 40 > 20:
+                    if pos[0] % 40 > 20:# 计算坐标
                         pos_X = pos[0] // 40 * 40 + 40
                         posXY.append(pos_X)
                     else:
@@ -82,7 +81,7 @@ def wuzi():
                         pos_Y = pos[1] // 40 * 40
                         posXY.append(pos_Y)
 
-                    if len(posXY) >= 2:
+                    if len(posXY) >= 2:# 画棋子
                         if posXY not in pos_exist and 40 <= posXY[0] <= 640 and 40 <= posXY[1] <= 640:
                             pos_exist.append(posXY)
                             if color_Q == 0:
@@ -94,56 +93,48 @@ def wuzi():
                                 exist_black.append(posXY)
                                 color_Q = 0
                         posXY = []
-                    if exist_white:
-                        exist_white = sorted(exist_white)
-                    if exist_black:
-                        exist_black = sorted(exist_black)
+                    if pos_exist:# 判断胜利
 
-                        print(exist_white)
-                    WY = 5
-                    WX = 0
-                    while WY <= len(exist_white):
-                        winner = exist_white[WX:WY]
-                        WY += 1
-                        WX += 1
-                        #print(winner)
-                    x = pos_exist[-1][0]
-                    y = pos_exist[-1][1]
-                    for j in range(1, 5):
-                        if [x + j * 40, y] in exist_white:
-                            print('右')
-                            break
-                        elif [x, y + j * 40] in exist_white:
-                            print('下')
-                            break
-                        elif [x, y - j * 40] in exist_white:
-                            print('上')
-                            break
-                        elif [x - j * 40, y] in exist_white:
-                            print('左')
-                            break
-                        elif [x + j * 40, y + j * 40] in exist_white:
-                            print('右下')
-                            break
-                        elif [x + j * 40, y - j * 40] in exist_white:
-                            print('右上')
-                            break
-                        elif [x - j * 40, y - j * 40] in exist_white:
-                            print('左上')
-                            break
-                        elif [x - j * 40, y + j * 40] in exist_white:
-                            print('左下')
-                            break
+                        x = pos_exist[-1][0]
+                        y = pos_exist[-1][1]
 
+                        count1, count2, count3, count4 = 0, 0, 0, 0
+                        colorS = exist_white
 
+                        if color_Q == 0:#获取当前柜子颜色
+                            colorS = exist_black
 
+                        for i in range(1, 5):#判断胜利
+                            if [x + i * 40, y] in colorS or [x - i * 40, y] in colorS:
+                                count1 += 1
 
+                        for i in range(1, 5):
+                            if [x + i * 40, y + i * 40] in colorS or [x - i * 40, y - i * 40] in colorS:
+                                count2 += 1
 
+                        for i in range(1, 5):
+                            if [x + i * 40, y - i * 40] in colorS or [x - i * 40, y + i * 40] in colorS:
+                                count3 += 1
 
-        clearS = pygame.image.load('cls.jpg')
+                        for i in range(1, 5):
+                            if [x, y - i * 40] in colorS or [x, y + i * 40] in colorS:
+                                count4 += 1
+                        if count1 == 4 or count2 == 4 or count3 == 4 or count4 == 4:
+                            if color_Q == 1:#打印胜利
+                                clearS = pygame.image.load('3.jpg')
+                                screen.blit(clearS, [280, 300])
+                                pygame.display.update()
+                                break
+                            elif color_Q == 0:
+                                clearS = pygame.image.load('4.jpg')
+                                screen.blit(clearS, [280, 300])
+                                pygame.display.update()
+                                break
+
+        clearS = pygame.image.load('2.jpg')# 重开按钮
         screen.blit(clearS, [680, 40])
         pygame.display.update()
 
 
 wuzi()
-        #pygame.display.update()
+     #pygame.display.update()

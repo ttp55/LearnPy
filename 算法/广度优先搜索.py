@@ -17,7 +17,7 @@ graph["jonny"] = []
 
 # 首先创建队列，因为先进先出，将要处理的节点放进队列，数组存储处理过的节点，循环处理当前队列节点，如果尾字母为M，就返回，它就为最近节点
 
-
+print(graph)
 def search(name):
     search_queue = deque()
     search_queue += graph[name]
