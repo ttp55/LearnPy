@@ -23,3 +23,4 @@ def func(selects, lasts):
 
 
 print(func("", "abbbbbbbbcddddddddddddddddddddd"))
+
