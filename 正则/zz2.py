@@ -6,5 +6,8 @@ import re
 
 str1 = 'the little cat cat cat is in the hat hat hat hat, we like it.'
 
-print(re.sub(r'(\w+)(\s\1)+', r'\1', str1))
-print(re.findall(r'(\w+)(\s\1)+', str1))
+# print(re.sub(r'(\w+)(\s\1)+', r'\1', str1))
+# print(re.findall(r'(\w+)(\s\1)+', str1))
+
+st = 'as1,2,3,4,5,cd1,2,3,cd'
+print(re.search(r'(\d,){5,}', st).group())
