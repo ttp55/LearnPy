@@ -11,4 +11,5 @@ str1 = 'the little cat cat cat is in the hat hat hat hat, we like it.'
 
 st = 'as1,2,3,4,5,6,7,8,9,cd1,2,3,cd'
 m = max(re.findall(r'\d+', st))
+print(re.search(r'(\d,){9,}', st).group())
 print(re.search(r'(\d,){%s,}' %m, st).group()) # 正则中引用变量
