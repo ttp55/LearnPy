@@ -8,8 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import sqrt
 from collections import Counter
-from 机器学习 import knn_classify
-from 机器学习 import knn_fit_class
+from machine import knn_classify
+from machine import knn_fit_class
 
 raw_data_X = [[3.393533211, 2.331273381],
               [3.110073483, 1.781539638],

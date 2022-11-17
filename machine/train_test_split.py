@@ -5,7 +5,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
-from 机器学习 import knn_fit_class
+from machine import knn_fit_class
 
 # 通过测试选择模型
 
@@ -44,11 +44,11 @@ def train_test_split(X, y, test_ratio=0.2, seed=None):
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 # 把训练数据集传给knn算法
-my_knn_clf = knn_fit_class.KNNClassifier(k=3)
-my_knn_clf.fit(X_train, y_train)
+#my_knn_clf = knn_fit_class.KNNClassifier(k=3)
+#my_knn_clf.fit(X_train, y_train)
 
 # 返回预测数据集
-y_predict = my_knn_clf.predict(X_test)
+# y_predict = my_knn_clf.predict(X_test)
 
 # 将预测数据集与测试数据集进行比对，得到模型预测准确率
-print(sum(y_predict == y_test)/len(y_test))
+#print(sum(y_predict == y_test)/len(y_test))
