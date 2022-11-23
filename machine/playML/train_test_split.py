@@ -3,9 +3,7 @@
 # --coding:utf-8--
 
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn import datasets
-from machine import knn_fit_class
 
 # 通过测试选择模型
 

@@ -4,7 +4,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from machine import SimpleLinearRegression
+from machine.playML import SimpleLinearRegression
 
 x = np.array([1., 2., 3., 4., 5.])
 y = np.array([1., 3., 2., 3., 5.])
@@ -35,3 +35,11 @@ reg1 = SimpleLinearRegression.SimpleLinearRegression1()
 reg1.fit(x, y)
 print(reg1.predict(np.array([x_predict])))
 print(reg1.a_, reg1.b_)
+
+reg2 = SimpleLinearRegression.SimpleLinearRegression2()
+reg2.fit(x, y)
+reg2.predict(np.array([x_predict]))
+
+m = 1000000
+big_x = np.random.random(size=m)
+big_y = big_x * 2 + 3 + np.random.normal(size=m)

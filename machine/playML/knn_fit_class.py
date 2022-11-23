@@ -6,7 +6,8 @@
 import numpy as np
 from math import sqrt
 from collections import Counter
-from machine import metrics
+from machine.playML import metrics
+
 
 class KNNClassifier:
 

@@ -2,15 +2,10 @@
 # @Author : WZG
 # --coding:utf-8--
 
-import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from sklearn import datasets
-from machine import train_test_split
-from machine import knn_fit_class
-from machine import metrics
-
-
+from machine.playML import metrics, knn_fit_class, train_test_split
 
 digits = datasets.load_digits()
 
