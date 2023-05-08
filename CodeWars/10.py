@@ -14,5 +14,4 @@ def high(x):
         ma.append(q)
     return xx[ma.index(max(ma))]
 
-
 print(high('man i need a taxi up to ubud'))
