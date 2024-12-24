@@ -2,6 +2,13 @@
 # @Author : WZG
 # --coding:utf-8--
 import time
+from selenuim_work import PyTest_main
+from PIL import Image
+import pytesseract
+import re
+import os
+import time
+from selenuim_work import img_ctrl
 import re
 print(time.strftime('%Y%m%d%H%M%S', time.localtime()))
 

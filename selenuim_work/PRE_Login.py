@@ -8,10 +8,11 @@ import re
 import os
 import time
 from selenuim_work import img_ctrl
+from selenuim_work import img_ctrl01
 
 url_url = 'http://192.168.210.57/'
 
-users = 'vjc'
+users = 'abd'
 passW = 'Zlll@20210701'
 
 
@@ -40,12 +41,20 @@ def login():
             ran.crop(box).save(code_fill)#截图
         except:pass
 
+        '''
+        img = img_ctrl01.chuli01()
+        img_str = pytesseract.image_to_string(img, config='--psm 10 --oem 3')
+        img_str = re.sub(r'[^a-zA-Z0-9]', '', img_str)
+
+        '''
         img_ctrl.chuli()#引用方法
 
         code_img = Image.open(img_ctrl.binary_file)#打开图片
 
         img_str = pytesseract.image_to_string(code_img, config='--psm 10 --oem 3')#使用LSTM OCR引擎，通常更准确
         img_str = re.sub(r'[^a-zA-Z0-9]', '', img_str)#正则去掉除文本外的内容
+
+
         try:
             os.remove('E://img/code.png')
 
@@ -61,14 +70,17 @@ def login():
             print("文件不存在")
         except PermissionError:
             print("权限不足，无法删除文件")
+        print(img_str)
         if len(img_str) == 4:
             d.element(fangfa='xpath', dingwei='//*[@id="TD4_3"]').send_keys(img_str)
             d.element(fangfa='xpath', dingwei='//*[@id="LoginEnglish"]').click()  # 点击登录
             login_value = d.element(fangfa='id', dingwei='LoginData_English').get_attribute('value')
             login_value = re.findall(r'-2',login_value)
-            if login_value[0] == '-2':
-                d.element(fangfa='xpath', dingwei='// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
-                jietu()
+            try:
+                if login_value[0] == '-2':
+                    d.element(fangfa='xpath', dingwei='// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
+                    jietu()
+            except:pass
 
         else:
             d.element(fangfa='xpath', dingwei='//*[@id="gate_English"]/div/div[3]/img').click()#点击刷新验证码
