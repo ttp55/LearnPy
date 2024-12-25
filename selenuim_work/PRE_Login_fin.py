@@ -2,7 +2,7 @@
 # @Author : WZG
 # --coding:utf-8--
 
-from selenuim_work import PyTest_main
+from selenium import webdriver
 from PIL import Image
 import pytesseract
 import re
@@ -18,19 +18,19 @@ passW = 'Zlll@20210701'
 
 
 def login():
-    d.element(fangfa='xpath', dingwei='//*[@id="active_4"]/div').click()
+    d.find_element_by_xpath('//*[@id="active_4"]/div').click()
 
-    d.element(fangfa='xpath', dingwei='//*[@id="TD4_1"]').click()
-    d.element(fangfa='xpath', dingwei='//*[@id="TD4_1"]').send_keys(users)
+    d.find_element_by_xpath('//*[@id="TD4_1"]').click()
+    d.find_element_by_xpath('//*[@id="TD4_1"]').send_keys(users)
     time.sleep(1)
-    d.element(fangfa='xpath', dingwei='//*[@id="TD4_2"]').click()
-    d.element(fangfa='xpath', dingwei='//*[@id="TD4_2"]').send_keys(passW)
+    d.find_element_by_xpath('//*[@id="TD4_2"]').click()
+    d.find_element_by_xpath('//*[@id="TD4_2"]').send_keys(passW)
     time.sleep(1)
 
     def jietu():
         code_fill = 'E://img/code1.png'
 
-        d.driver.save_screenshot('E://img/code.png')#截全图
+        d.save_screenshot('E://img/code.png')#截全图
         try:
             ran = Image.open('E://img/code.png')#打开图片
         except: pass
@@ -72,11 +72,10 @@ def login():
             print("权限不足，无法删除文件")
         print(img_str)
         if len(img_str) == 4:
-            d.element(fangfa='xpath', dingwei='//*[@id="TD4_3"]').send_keys(img_str)
-            d.element(fangfa='xpath', dingwei='//*[@id="LoginEnglish"]').click()  # 点击登录
-            time.sleep(1)
+            d.find_element_by_xpath('//*[@id="TD4_3"]').send_keys(img_str)
+            d.find_element_by_xpath('//*[@id="LoginEnglish"]').click()  # 点击登录
             try:
-                d.driver.find_element_by_id('sbld')
+                d.find_element_by_id('sbld')
                 print('登录成功')
 
 
@@ -84,14 +83,13 @@ def login():
                 #login_value = d.element(fangfa='id', dingwei='LoginData_English').get_attribute('value')# 获取登录状态
                 #login_value = re.findall(r'-2', login_value)
                 print('验证码错误')
-
-                d.element(fangfa='xpath', dingwei='// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
+                d.find_element_by_xpath('// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
                 jietu()
 
 
         else:
-            d.element(fangfa='xpath', dingwei='//*[@id="gate_English"]/div/div[3]/img').click()#点击刷新验证码
-            d.element(fangfa='xpath', dingwei='// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
+            d.find_element_by_xpath('//*[@id="gate_English"]/div/div[3]/img').click()#点击刷新验证码
+            d.find_element_by_xpath('// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
             jietu()
 
     jietu()
@@ -108,8 +106,8 @@ def login():
 
 
 if __name__ == "__main__":
-    d = PyTest_main.PyTest(browser='chrome')
-    d.make_maxwindow()
-    d.open(url=url_url)
-    d.waiting(1)
+    d = webdriver.Chrome()
+    d.maximize_window()
+    d.get(url_url)
+    d.implicitly_wait(1)
     login()

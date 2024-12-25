@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 import re
 
+
 def chuli01():
     scale_factor = 2
     img = Image.open('E://img/code1.png')
@@ -15,10 +16,5 @@ def chuli01():
 
     threshold = 130
     img = img.point(lambda x: 0 if x < threshold else 255, '1')
-
-    kernel = np.ones((2, 2), np.uint8)
-    print(type(np.array(img)))
-    img = cv2.morphologyEx(np.array(img), cv2.MORPH_OPEN, kernel)
-    img = Image.fromarray(img)
 
     return img
