@@ -10,6 +10,8 @@ import os
 import time
 from selenuim_work import img_ctrl
 import re
+
+
 print(time.strftime('%Y%m%d%H%M%S', time.localtime()))
 
 l = '{"status":-2,"ErrName":"验证码","attr":"verification code"}'
