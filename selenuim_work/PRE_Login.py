@@ -8,6 +8,7 @@ import pytesseract
 import re
 import os
 import time
+import ddddocr
 from selenuim_work import img_ctrl
 from selenuim_work import img_ctrl01
 
@@ -41,12 +42,18 @@ def login():
             ran.crop(box).save(code_fill)#截图
         except:pass
 
+        with open(code_fill, 'rb') as f:
+            img_cod = f.read()
 
+        ocr = ddddocr.DdddOcr()#使用训练数据模型，成功率最高，90%以上
+        img_str = ocr.classification(img_cod)
+
+        '''
         img = img_ctrl01.chuli01() #这个方法成功率相对高
         img_str = pytesseract.image_to_string(img, config='--psm 10 --oem 3')
         img_str = re.sub(r'[^a-zA-Z0-9]', '', img_str)
 
-        '''
+        
         img_ctrl.chuli()#引用方法 这个方法成功率稍低
 
         code_img = Image.open(img_ctrl.binary_file)#打开图片
@@ -84,7 +91,6 @@ def login():
                 #login_value = d.element(fangfa='id', dingwei='LoginData_English').get_attribute('value')# 获取登录状态
                 #login_value = re.findall(r'-2', login_value)
                 print('验证码错误')
-
                 d.element(fangfa='xpath', dingwei='// *[ @ id = "TD4_3"]').clear()  # 清空验证码输入框
                 jietu()
 

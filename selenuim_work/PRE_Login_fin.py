@@ -38,9 +38,8 @@ def login():
         code_fill = 'E://img/code1.png'
 
         d.save_screenshot('E://img/code.png')#截全图
-        try:
-            ran = Image.open('E://img/code.png')#打开图片
-        except: pass
+
+        ran = Image.open('E://img/code.png')#打开图片
 
         box = (1300,665,1430,705)#设置截图区域
 
