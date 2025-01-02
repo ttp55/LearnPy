@@ -41,7 +41,7 @@ def login():
 
         ran = Image.open('E://img/code.png')#打开图片
 
-        box = (1300,665,1430,705)#设置截图区域
+        box = (1300, 665, 1430, 705)#设置截图区域
 
         try:
             ran.crop(box).save(code_fill)#截图
@@ -119,7 +119,7 @@ def login():
     #d.driver.quit()
 
 
-def NONSCHEDULEDLANDING_new_plan(plan_count):
+def NONSCHEDULEDLANDING_new_add_plan(plan_count):
     try:
         d.find_element_by_xpath('//*[@id="div_content"]/div[1]/div').click()#点击临时落地模块//*[@id="div_content"]/div[2]/div
         d.find_element_by_id('NoticeDetermine').click()#勾选同意
@@ -195,6 +195,69 @@ def NONSCHEDULEDLANDING_new_plan(plan_count):
             print(f'异常:{e}')
             tb = sys.exc_info()[2]
             traceback.print_exception(e.__class__, e, tb)
+    d.switch_to.default_content()
+    d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
+
+
+def NONSCHEDULEDLANDING_new_chg_plan(plan_count, permission_no):
+    try:
+        d.find_element_by_xpath('//*[@id="div_content"]/div[1]/div').click()#点击临时落地模块//*[@id="div_content"]/div[2]/div
+        d.find_element_by_id('NoticeDetermine').click()#勾选同意
+        d.find_element_by_xpath('//*[@id="NoticeBtn"]').click()#点击确认
+
+    except Exception as e:
+        print(f'异常:{e}')
+
+    for i in range(plan_count):
+        try:
+            try:
+                d.switch_to.default_content()#跳出iframe
+                d.find_element_by_xpath('//*[@id="myTab"]/li[1]/a').click()#点击application List
+            except:pass
+
+            try:
+                d.switch_to.frame('HomeContent')  # 进入iframe
+            except:
+                pass
+            d.find_element_by_xpath('//*[@id="btn_chg"]').click()
+            d.find_element_by_id('btn_selecttemplate').click()  # 点击选择模板
+            d.find_element_by_xpath('//*[@id="tempbody"]/div/div/div[1]/small/input').click()  # 选择模板
+            d.find_element_by_id('PNUM_END').send_keys(permission_no)
+
+            d.find_element_by_xpath('//*[@id="plan_tb"]/tbody/tr[1]/td[11]/div/button[1]').click()#点击select
+            time.sleep(1)
+            d.implicitly_wait(4)
+            d.find_element_by_xpath('//*[@id="box0"]/label/input').click()#点击日期
+            d.find_element_by_xpath('//*[@id="ReplyTab"]/tbody/tr/td[1]/input').click()#点击选择
+            d.find_element_by_id('btn_copy').click()#点击copy
+            d.execute_script("document.getElementById('EDATE_EN_R').value = '%sFEB2025'" % random.randint(10, 28))  # 调用JS直接给日期赋值
+
+            try:
+                d.find_element_by_id('INPOINT_R').send_keys('TEBAK')#入境点
+            except:
+                d.find_element_by_id('btn_Create_R').click()#点击search
+            try:
+                d.find_element_by_xpath('//*[@id="rout_div"]/div/p/input').click()#选择航路
+            except:
+                d.find_element_by_id('ROUTE_R').send_keys('TEBAK')#录入航路
+
+            d.find_element_by_id('btn_SavePlan').click()  # save
+            d.implicitly_wait(4)
+            d.find_element_by_id('btn_Submit').click()  # submit
+            time.sleep(3)
+
+            try:
+                d.find_element_by_xpath('/html/body/div[16]/div/div/div[3]/button').click()#点击提交成功后的确认
+            except:
+                d.switch_to.default_content()#跳出iframe
+                d.find_element_by_xpath('//*[@id="myTab"]/li[1]/a').click()#点击application LIst
+
+        except Exception as e:
+            print(f'异常:{e}')
+            tb = sys.exc_info()[2]
+            traceback.print_exception(e.__class__, e, tb)
+    d.switch_to.default_content()
+    d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
 
 
 if __name__ == "__main__":
@@ -205,4 +268,5 @@ if __name__ == "__main__":
     login()
 
 if login_status == 1:
-    NONSCHEDULEDLANDING_new_plan(20)
+    NONSCHEDULEDLANDING_new_chg_plan(2, '2024F0063')
+    #NONSCHEDULEDLANDING_new_add_plan(1)
