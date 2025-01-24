@@ -88,7 +88,7 @@ def new_add_plan(d, plan_count):
             traceback.print_exception(e.__class__, e, tb)
     d.switch_to.default_content()
     d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
-
+    d.find_element_by_xpath('//*[@id="sbld"]').click()  # 退出登录
 
 def new_chg_plan(d, plan_count, permission_no):
     try:
@@ -150,6 +150,7 @@ def new_chg_plan(d, plan_count, permission_no):
             traceback.print_exception(e.__class__, e, tb)
     d.switch_to.default_content()
     d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
+    d.find_element_by_xpath('//*[@id="sbld"]').click()  # 退出登录
 
 
 def new_cnl_plan(d, plan_count, permission_no):
@@ -199,4 +200,4 @@ def new_cnl_plan(d, plan_count, permission_no):
             traceback.print_exception(e.__class__, e, tb)
     d.switch_to.default_content()
     d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
-
+    d.find_element_by_xpath('//*[@id="sbld"]').click()  # 退出登录

@@ -3,10 +3,14 @@
 # --coding:utf-8--
 from pymouse import PyMouse
 from pykeyboard import PyKeyboard
-m = PyMouse
+import time
+m = PyMouse()
 k = PyKeyboard
-a = m.position(1)
+a = m.position()
 print(a)
-m.move(1328, 361)
+m.click(930, 634)
+time.sleep(1)
+m.click(1193, 848)
+time.sleep(1)
 
-m.click(1328, 361,1,1)
+#m.click(1328, 361,1,1)

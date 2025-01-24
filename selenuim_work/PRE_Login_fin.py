@@ -4,31 +4,27 @@
 
 from selenium import webdriver
 from PIL import Image
-import pytesseract
-import re
 import os
 import time
-import random
-from selenuim_work import img_ctrl
-from selenuim_work import img_ctrl01
-from selenuim_work import NONSCHEDULEDLANDING
+from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING
 import ddddocr
-import sys
-import traceback
 
 
 url_url = 'http://192.168.210.57/'
 
-users = 'cal'
+users = 'sjatczhm'
+users2 = 'bdj'
+users3 = 'bdj_01'
+users4 = 'cal'
 passW = 'Zlll@20210701'
 login_status = 0
 
 
-def login():
+def login(user):
     d.find_element_by_xpath('//*[@id="active_4"]/div').click()
 
     d.find_element_by_xpath('//*[@id="TD4_1"]').click()
-    d.find_element_by_xpath('//*[@id="TD4_1"]').send_keys(users)
+    d.find_element_by_xpath('//*[@id="TD4_1"]').send_keys(user)
     time.sleep(1)
     d.find_element_by_xpath('//*[@id="TD4_2"]').click()
     d.find_element_by_xpath('//*[@id="TD4_2"]').send_keys(passW)
@@ -108,11 +104,13 @@ def login():
         response = requests.get(code_url)
         with open('code.png', 'wb')as file:
             file.write(response.content)
-            能获取到，但获取的不对，只能用截图的方式
+            能获取到验证码，但获取的不对，只能用截图的方式
 
     '''
 
     #d.driver.quit()
+
+
 
 
 if __name__ == "__main__":
@@ -120,8 +118,19 @@ if __name__ == "__main__":
     d.maximize_window()
     d.get(url_url)
     d.implicitly_wait(4)
-    login()
+    login(users4)  # 用户登录
     if login_status == 1:
+        # 临时落地 新增计划
         #NONSCHEDULEDLANDING.new_cnl_plan(d, 1, '2024F0063')
         #NONSCHEDULEDLANDING.new_chg_plan(d, 2, '2024F0063')
-        NONSCHEDULEDLANDING.new_add_plan(d, 2)
+        #NONSCHEDULEDLANDING.new_add_plan(d, 2)
+
+        # 公务机 公司上传备案
+        #BUSINESS_REGISTRATION.new_information(d)
+
+        #临时飞越
+        NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
+
+
+
+
