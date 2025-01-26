@@ -6,27 +6,23 @@ from selenium import webdriver
 from PIL import Image
 import os
 import time
-from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING
+from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING, NO_MAINLAND_BUSINESS_FLIGHTPLAN
 import ddddocr
 
 
 url_url = 'http://192.168.210.57/'
 
-users = 'sjatczhm'
-users2 = 'bdj'
-users3 = 'bdj_01'
-users4 = 'cal'
+
 passW = 'Zlll@20210701'
 login_status = 0
 
 
 def login(user):
-    d.find_element_by_xpath('//*[@id="active_4"]/div').click()
 
-    d.find_element_by_xpath('//*[@id="TD4_1"]').click()
+    d.find_element_by_xpath('//*[@id="active_4"]/div').click()
+    d.find_element_by_xpath('//*[@id="TD4_1"]').clear()
     d.find_element_by_xpath('//*[@id="TD4_1"]').send_keys(user)
     time.sleep(1)
-    d.find_element_by_xpath('//*[@id="TD4_2"]').click()
     d.find_element_by_xpath('//*[@id="TD4_2"]').send_keys(passW)
     time.sleep(1)
 
@@ -84,7 +80,6 @@ def login(user):
                 global login_status
                 login_status = 1
 
-
             except:
                 #login_value = d.element(fangfa='id', dingwei='LoginData_English').get_attribute('value')  #  获取登录状态
                 #login_value = re.findall(r'-2', login_value)
@@ -111,14 +106,17 @@ def login(user):
     #d.driver.quit()
 
 
-
+users = 'sjatczhm'
+users2 = 'bdj'
+users3 = 'bdj_01'
+users4 = 'cal'
 
 if __name__ == "__main__":
     d = webdriver.Chrome()
     d.maximize_window()
     d.get(url_url)
     d.implicitly_wait(4)
-    login(users4)  # 用户登录
+    login(users2)  # 用户登录
     if login_status == 1:
         # 临时落地 新增计划
         #NONSCHEDULEDLANDING.new_cnl_plan(d, 1, '2024F0063')
@@ -126,10 +124,13 @@ if __name__ == "__main__":
         #NONSCHEDULEDLANDING.new_add_plan(d, 2)
 
         # 公务机 公司上传备案
-        #BUSINESS_REGISTRATION.new_information(d)
-
-        #临时飞越
-        NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
+        BUSINESS_REGISTRATION.new_information(d)
+        login(users)
+        NO_MAINLAND_BUSINESS_FLIGHTPLAN.beian_shenpi(d)  # 审批
+        login(users2)
+        #临时飞越 新增计划
+        #NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
+        #NONSCHEDULED_OVERFLY.new_chg_plan(d, plan_count=2, permission_no='4206')
 
 
 

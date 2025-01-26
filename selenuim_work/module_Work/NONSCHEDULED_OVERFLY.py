@@ -10,7 +10,7 @@ import traceback
 
 def new_add_plan(d, plan_count):
     try:
-        d.find_element_by_xpath('//*[@id="div_content"]/div[3]/div/div[1]').click()  # 点击临时飞越模块//*[@id="div_content"]/div[2]/div
+        d.find_element_by_xpath('//*[@id="div_content"]/div[3]/div/div[1]').click()  # 点击临时飞越模块
 
     except Exception as e:
         print(f'异常:{e}')
@@ -55,6 +55,60 @@ def new_add_plan(d, plan_count):
                 d.find_element_by_xpath('//*[@id="tb_myroute"]/tbody/tr[3]').click()  # 选择航路
             except:
                 d.find_element_by_id('ROUTE').send_keys('TEBAK')  # 录入航路
+
+            d.find_element_by_id('btn_SavePlan').click()  # save
+            d.find_element_by_id('btn_Submit').click()  # submit
+
+            time.sleep(3)
+            try:
+                d.find_element_by_xpath('/html/body/div[13]/div/div/div[3]/button').click()  # 点击提交成功后的确认
+            except:
+                d.switch_to.default_content()  # 跳出iframe
+                d.find_element_by_xpath('//*[@id="myTab"]/li[1]/a').click()  # 点击application LIst
+        except Exception as e:
+            print(f'异常:{e}')
+            tb = sys.exc_info()[2]
+            traceback.print_exception(e.__class__, e, tb)
+    d.switch_to.default_content()
+    d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
+    d.find_element_by_xpath('//*[@id="sbld"]').click()  # 退出登录
+
+
+def new_chg_plan(d, plan_count, permission_no):
+    try:
+        d.find_element_by_xpath('//*[@id="div_content"]/div[3]/div/div[1]').click()  # 点击临时飞越模块
+
+    except Exception as e:
+        print(f'异常:{e}')
+
+    for i in range(plan_count):
+        try:
+            try:
+                d.switch_to.default_content()  # 跳出iframe
+                d.find_element_by_xpath('//*[@id="myTab"]/li[1]/a').click()  # 点击application List
+            except:pass
+
+            try:
+                d.switch_to.frame('HomeContent')  # 进入iframe
+            except:
+                pass
+            d.find_element_by_xpath('//*[@id="btn_chg"]').click()  # 点击ADD
+            d.find_element_by_id('btn_selecttemplate').click()  # 点击选择模板
+            d.find_element_by_xpath('//*[@id="tempbody"]/div/div/div[1]/small/input').click()  # 选择模板
+            d.find_element_by_id('PNUM').send_keys(permission_no)
+            d.find_element_by_xpath('//*[@id="plan_tb"]/tbody/tr[1]/td[10]/button[1]').click()  # 点击select
+            time.sleep(1)
+            d.find_element_by_xpath('//*[@id="box0"]/label/input').click()  # 点击日期
+            d.find_element_by_xpath('//*[@id="ReplyTab"]/tbody/tr/td[1]/input').click()  # 点击选择
+            d.find_element_by_id('btn_copy').click()  # 点击copy
+            d.execute_script("document.getElementById('EDATE_EN_R').value = '%sFEB2025'" % random.randint(1, 22))
+            # 调用JS直接给日期赋值
+
+            try:
+                d.find_element_by_xpath('//*[@id="btn_Select"]').click()  # 点击serach
+                d.find_element_by_xpath('//*[@id="tb_myroute"]/tbody/tr[2]').click()  # 选择航路
+            except:
+                d.find_element_by_id('ROUTE_R').send_keys('TEBAK')  # 录入航路
 
             d.find_element_by_id('btn_SavePlan').click()  # save
             d.find_element_by_id('btn_Submit').click()  # submit

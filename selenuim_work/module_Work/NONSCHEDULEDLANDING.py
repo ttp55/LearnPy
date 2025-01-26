@@ -11,7 +11,8 @@ import traceback
 
 def new_add_plan(d, plan_count):
     try:
-        d.find_element_by_xpath('//*[@id="div_content"]/div[1]/div').click()  # 点击临时落地模块//*[@id="div_content"]/div[2]/div
+        d.find_element_by_xpath('//*[@id="div_content"]/div[1]/div').click()
+        # 点击临时落地模块//*[@id="div_content"]/div[2]/div
         d.find_element_by_id('NoticeDetermine').click()  # 勾选同意
         d.find_element_by_xpath('//*[@id="NoticeBtn"]').click()  # 点击确认
 
@@ -89,6 +90,7 @@ def new_add_plan(d, plan_count):
     d.switch_to.default_content()
     d.find_element_by_xpath('/html/body/div/div[1]/ul[4]/li/a').click()
     d.find_element_by_xpath('//*[@id="sbld"]').click()  # 退出登录
+
 
 def new_chg_plan(d, plan_count, permission_no):
     try:
