@@ -7,7 +7,7 @@ from PIL import Image
 import os
 import time
 from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING, \
-    NO_MAINLAND_BUSINESS_FLIGHTPLAN,NO_MAINLAND_BUSINESS_FLIGHTPLAN
+    NO_MAINLAND_BUSINESS_FLIGHTPLAN_1,NO_MAINLAND_BUSINESS_FLIGHTPLAN
 import ddddocr
 import sys
 import traceback
@@ -128,6 +128,9 @@ if __name__ == "__main__":
 
         # 公务机 公司上传备案
         BUSINESS_REGISTRATION.beian_shenpi(d)
+        login(users)
+        NO_MAINLAND_BUSINESS_FLIGHTPLAN_1.beian_shenpi(d)  # 审批
+        login(users2)
 
         #临时飞越 新增计划
         #NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
