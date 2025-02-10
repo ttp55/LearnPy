@@ -6,9 +6,12 @@ from selenium import webdriver
 from PIL import Image
 import os
 import time
-from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING, NO_MAINLAND_BUSINESS_FLIGHTPLAN
+from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING, \
+    NO_MAINLAND_BUSINESS_FLIGHTPLAN,NO_MAINLAND_BUSINESS_FLIGHTPLAN
 import ddddocr
-
+import sys
+import traceback
+import random
 
 url_url = 'http://192.168.210.57/'
 
@@ -124,14 +127,13 @@ if __name__ == "__main__":
         #NONSCHEDULEDLANDING.new_add_plan(d, 2)
 
         # 公务机 公司上传备案
-        BUSINESS_REGISTRATION.new_information(d)
-        login(users)
-        NO_MAINLAND_BUSINESS_FLIGHTPLAN.beian_shenpi(d)  # 审批
-        login(users2)
+        BUSINESS_REGISTRATION.beian_shenpi(d)
+
         #临时飞越 新增计划
         #NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
         #NONSCHEDULED_OVERFLY.new_chg_plan(d, plan_count=2, permission_no='4206')
 
-
+        #国外公务机
+        # NO_MAINLAND_BUSINESS_FLIGHTPLAN.new_add_plan(d, 1)
 
 
