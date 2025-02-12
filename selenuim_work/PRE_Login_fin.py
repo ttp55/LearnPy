@@ -113,13 +113,14 @@ users = 'sjatczhm'
 users2 = 'bdj'
 users3 = 'bdj_01'
 users4 = 'cal'
+users5 = 'icu'
 
 if __name__ == "__main__":
     d = webdriver.Chrome()
     d.maximize_window()
     d.get(url_url)
     d.implicitly_wait(4)
-    login(users2)  # 用户登录
+    login(users5)  # 用户登录
     if login_status == 1:
         # 临时落地 新增计划
         #NONSCHEDULEDLANDING.new_cnl_plan(d, 1, '2024F0063')
@@ -130,7 +131,7 @@ if __name__ == "__main__":
         BUSINESS_REGISTRATION.beian_shenpi(d)
         login(users)
         NO_MAINLAND_BUSINESS_FLIGHTPLAN_1.beian_shenpi(d)  # 审批
-        login(users2)
+        login(users5)
 
         #临时飞越 新增计划
         #NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
