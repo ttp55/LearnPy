@@ -18,10 +18,11 @@ def beian_shenpi(d):
         time.sleep(1)
         d.find_element_by_xpath('/html/body/div/div[2]/div[1]/div[2]/div[4]/div[1]/span[2]/span/button').click()
         #d.find_element_by_class('btn-group dropup open').click()
-        d.find_element_by_xpath('/html/body/div/div[2]/div[1]/div[2]/div[4]/div[1]/span[2]/span/ul/li[3]').click()
-
-    except:
         d.find_element_by_xpath('/html/body/div/div[2]/div[1]/div[2]/div[4]/div[1]/span[2]/span/ul/li[2]').click()
+    except:pass
+    try:
+        d.find_element_by_xpath('/html/body/div/div[2]/div[1]/div[2]/div[4]/div[1]/span[2]/span/ul/li[3]').click()
+    except:pass
 
     d.find_element_by_xpath('//*[@id="tb"]/thead/tr/th[1]/div[1]/input').click()  # 全选
     if random.randint(0, 1) == 0:

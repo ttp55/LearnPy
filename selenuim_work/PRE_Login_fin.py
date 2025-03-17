@@ -7,7 +7,7 @@ from PIL import Image
 import os
 import time
 from selenuim_work.module_Work import BUSINESS_REGISTRATION, NONSCHEDULED_OVERFLY, NONSCHEDULEDLANDING, \
-    NO_MAINLAND_BUSINESS_FLIGHTPLAN_1,NO_MAINLAND_BUSINESS_FLIGHTPLAN
+    NO_MAINLAND_BUSINESS_FLIGHTPLAN_1,NO_MAINLAND_BUSINESS_FLIGHTPLAN, MAINLAND_BUSINESS_FLIGHTPLAN
 import ddddocr
 import sys
 import traceback
@@ -78,6 +78,17 @@ def login(user):
             d.find_element_by_xpath('//*[@id="TD4_3"]').send_keys(img_str)
             d.find_element_by_xpath('//*[@id="LoginEnglish"]').click()  # 点击登录
             try:
+                # 录入基础信息
+                d.find_element_by_id('AFFILIATEDUNIT').send_keys('1')
+                d.find_element_by_id('DEPARTMENT').send_keys('1')
+                d.find_element_by_id('CONTACTER_0').send_keys('1')
+                d.find_element_by_id('CONTACTNUMBER_0').send_keys('1')
+                d.find_element_by_id('EMAIL_0').send_keys('1@1.com')
+                d.find_element_by_xpath('//*[@id="AddInfoModal"]/div/div/div[3]/button[2]').click()
+                d.find_element_by_xpath('/html/body/div[8]/div/div/div[2]/button[2]').click()
+                d.find_element_by_xpath('/html/body/div[8]/div/div/div[2]/button').click()
+            except:pass
+            try:
                 d.find_element_by_id('sbld')
                 print('登录成功')
                 global login_status
@@ -109,35 +120,47 @@ def login(user):
     #d.driver.quit()
 
 
+# 管理员
 users = 'sjatczhm'
-users2 = 'bdj'
-users3 = 'bdj_01'
+# 正班落地、飞越、临时落地、飞越
 users4 = 'cal'
+# 公务机备案
+users2 = 'bdj'
 users5 = 'icu'
+users6 = 'jcn'
+users7 = 'pix'
+# 公务机申请
+users3 = 'bdj_01'
 
 if __name__ == "__main__":
     d = webdriver.Chrome()
     d.maximize_window()
     d.get(url_url)
     d.implicitly_wait(4)
-    login(users5)  # 用户登录
+    login(users3)  # 用户登录
     if login_status == 1:
         # 临时落地 新增计划
-        #NONSCHEDULEDLANDING.new_cnl_plan(d, 1, '2024F0063')
+        #NONSCHEDULEDLANDING.new_cnl_plan(d, 1, '2024F0063'5
         #NONSCHEDULEDLANDING.new_chg_plan(d, 2, '2024F0063')
         #NONSCHEDULEDLANDING.new_add_plan(d, 2)
 
         # 公务机 公司上传备案
+        '''
         BUSINESS_REGISTRATION.beian_shenpi(d)
         login(users)
         NO_MAINLAND_BUSINESS_FLIGHTPLAN_1.beian_shenpi(d)  # 审批
         login(users5)
-
-        #临时飞越 新增计划
+        '''
+        # 临时飞越 新增计划
         #NONSCHEDULED_OVERFLY.new_add_plan(d, plan_count=2)
         #NONSCHEDULED_OVERFLY.new_chg_plan(d, plan_count=2, permission_no='4206')
 
-        #国外公务机
-        # NO_MAINLAND_BUSINESS_FLIGHTPLAN.new_add_plan(d, 1)
+        # 国外公务机
+        #NO_MAINLAND_BUSINESS_FLIGHTPLAN.new_add_plan_nextday(d, 1)
+        #NO_MAINLAND_BUSINESS_FLIGHTPLAN.new_add_plan_today(d, 10)
 
 
+        # 国内公务机
+        #MAINLAND_BUSINESS_FLIGHTPLAN.new_add_plan_nextday(d, 1)
+        #MAINLAND_BUSINESS_FLIGHTPLAN.new_add_plan_today(d, 5)
+        MAINLAND_BUSINESS_FLIGHTPLAN.new_chg_plan_nextday(d, 1)
